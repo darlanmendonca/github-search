@@ -1,0 +1,10 @@
+form.search-github(ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
+	h2 Github Search
+	label
+		input(type='search', placeholder='type and search by users, or repositories', ng-model='q', required)
+		button.btn.primary Search
+
+	.results
+		div(ng-repeat='result in results')
+			span {{result.name}} by 
+			a(ng-href='{{result.owner.login.html_url}}', target='_blank') @{{result.owner.login}}

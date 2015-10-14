@@ -1,0 +1,52 @@
+form.search-github {
+	max-width: 1024px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 0 10px;
+
+	input {
+		padding: 0 10px;
+		outline: 0;
+		background: none;
+		border: 0;
+		border-bottom: 1px solid $primary-color;
+	}
+
+	input, button {
+		display: block;
+		width: 100%;
+		box-sizing: border-box;
+		line-height: 3.5em;
+
+		@media (min-width: 400px) {
+			line-height: 2em;
+		}
+
+		@media (min-width: 768px) {
+			flex: auto;
+		}
+	}
+
+	button {
+		margin-top: 10px;
+	}
+
+	@media (min-width: 768px) {
+		label {
+			display: flex;
+		}
+
+		button {
+			margin-left: 10px;
+			max-width: 200px;
+		}
+	}
+}
+
+.ng-submitted .ng-invalid {
+	border-color: $danger-color;
+
+	&::placeholder {
+		color: $danger-color;
+	}
+}

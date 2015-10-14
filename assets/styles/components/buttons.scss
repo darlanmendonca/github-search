@@ -1,0 +1,14 @@
+.btn {
+	background-color: none;
+	outline: 0;
+	border: 0;
+	background-color: $primary-color;
+	color: $black-color;
+	transition: background-color .2s ease;
+
+	&.primary {
+		&:hover, &:focus {
+			background-color: $highlight-color;
+		}
+	}
+}

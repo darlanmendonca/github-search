@@ -1,0 +1,15 @@
+{
+  "name": "github-search",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.4.5",
+    "angular-animate": "^1.4.5",
+    "angular-cookies": "^1.4.5",
+    "angular-resource": "^1.4.5",
+    "angular-sanitize": "^1.4.5",
+    "angular-touch": "^1.4.5",
+    "angular-ui-router": "^0.2.15",
+    "normalize-css": "normalize.css#~3.0.3",
+    "angular-loading-bar": "~0.8.0"
+  }
+}

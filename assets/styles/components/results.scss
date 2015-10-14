@@ -1,0 +1,40 @@
+.results {
+	margin-top: 25px;
+	a {
+		color: $highlight-color;
+		text-decoration: none;
+		margin-left: 5px;
+	}
+
+	div {
+		line-height: 2em;
+		padding: 0 10px;
+		box-sizing: border-box;
+		transition: all ease .25s;
+
+		a, span {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			display: inline-block;
+			max-width: 50%;
+		}
+
+		&.ng-enter {
+			opacity: 0;
+			transform: translate(0, -1em);
+		}
+
+		&.ng-enter-stagger {
+			transition-delay: 0.015s;
+			transition-duration: 0s;
+		}
+
+		&.ng-enter-active {
+			// transition-delay: 0.02s;
+			opacity: 1;
+			transform: translate(0, 0);
+			// transition-duration: 0s;
+		}
+	}
+}
