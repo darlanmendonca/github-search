@@ -16,6 +16,12 @@ md-tabs span {
 	color: inherit !important;
 }
 
+// overwite tab ink-bar
+md-tabs md-ink-bar {
+	color: rgb(33,150,243) !important;
+	background: rgb(33,150,243) !important;
+}
+
 // button height and position aspect
 md-input-container + .md-button {
 	padding: 20px 0;

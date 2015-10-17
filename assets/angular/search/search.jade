@@ -7,8 +7,6 @@ md-content.layout-padding.doc-content(layout='column')
 
 	md-tabs.results(md-dynamic-height, md-border-bottom, ng-show='results')
 		md-tab.md-primary(label='Repositories')
-			md-list(layout='column')
-				.md-list-item(ng-repeat='result in results')
-					span {{result.name}} by
-					a.md-primary(ng-href='{{result.owner.html_url}}', target='_blank') @{{result.owner.login}}
+			md-list(layout='column'): .md-list-item(ng-repeat='result in results')
+				a.md-primary(ng-href='{{result.owner.html_url}}', target='_blank') {{result.owner.login}}/<strong>{{result.name}}</strong>
 		md-tab.md-primary(label='Users')
