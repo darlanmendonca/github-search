@@ -9,7 +9,7 @@
     "angular-sanitize": "^1.4.5",
     "angular-touch": "^1.4.5",
     "angular-ui-router": "^0.2.15",
-    "normalize-css": "normalize.css#~3.0.3",
-    "angular-loading-bar": "~0.8.0"
+    "angular-loading-bar": "~0.8.0",
+    "angular-material": "~0.11.4"
   }
 }

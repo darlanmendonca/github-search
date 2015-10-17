@@ -1,10 +1,29 @@
-form.search-github(ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
-	h2 Github Search
-	label
-		input(type='search', placeholder='type and search by users, or repositories', ng-model='q', required)
-		button.btn.primary Search
+md-toolbar.transparent(layout='row')
+	.md-toolbar-tools
+		h1 Github Search
 
-	.results
-		div(ng-repeat='result in results')
-			span {{result.name}} by 
-			a(ng-href='{{result.owner.login.html_url}}', target='_blank') @{{result.owner.login}}
+md-content.layout-padding.doc-content(layout='column')
+	form(layout='row', layout-align='space-around center', layout-sm='column', ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
+		md-input-container(flex='')
+			label Search by users, or repositories
+			input(ng-model='q', autocomplete='off')
+		md-button.md-raised.md-primary Search
+
+	md-tabs.md-whiteframe-z1.results(md-dynamic-height, md-border-bottom, ng-show='results')
+		md-tab(label='Repositories')
+			md-list(layout='column')
+				.md-list-item(ng-repeat='result in results')
+					span {{result.name}} by
+					a(ng-href='{{result.owner.html_url}}', target='_blank') @{{result.owner.login}}
+		md-tab(label='Users')
+
+//- form.search-github(ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
+//- 	h2 Github Search
+//- 	label
+//- 		input(type='search', placeholder='type and search by users, or repositories', ng-model='q', required)
+//- 		button.btn.primary Search
+
+//- 	.results
+//- 		div(ng-repeat='result in results')
+//- 			span {{result.name}} by
+//- 			a(ng-href='{{result.owner.html_url}}', target='_blank') @{{result.owner.login}}

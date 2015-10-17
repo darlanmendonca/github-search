@@ -8,5 +8,6 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ngMaterial'
   ]);
