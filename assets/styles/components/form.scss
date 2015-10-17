@@ -1,0 +1,22 @@
+
+// when large texts, placeholder dont trigger focus to input
+// code below fix this
+md-input-container label {
+	pointer-events: auto !important;
+	cursor: text !important;
+}
+
+.md-input-focused label{
+	cursor: auto !important;
+	pointer-events: none !important;
+}
+
+
+md-tabs span {
+	color: inherit !important;
+}
+
+// button height and position aspect
+md-input-container + .md-button {
+	padding: 20px 0;
+}

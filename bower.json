@@ -10,6 +10,6 @@
     "angular-touch": "^1.4.5",
     "angular-ui-router": "^0.2.15",
     "angular-loading-bar": "~0.8.0",
-    "angular-material": "~0.11.4"
+    "angular-material": "0.11.3"
   }
 }
