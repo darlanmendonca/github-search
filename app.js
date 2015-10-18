@@ -4,7 +4,6 @@ let express = require('express');
 let http = require('http');
 let path = require('path');
 let mongoose = require('mongoose');
-let morgan = require('morgan');
 let bodyParser = require('body-parser');
 let compress = require('compression');
 let methodOverride = require('method-override');
@@ -22,9 +21,10 @@ app.set('port', config.server.port);
 app.set('views', path.join(__dirname, 'assets', 'views'));
 app.set('view engine', 'jade');
 
-if (app.get('env') === 'development') {
-  app.use(morgan('dev'));
-}
+// if (app.get('env') === 'development') {
+// 	let morgan = require('morgan');
+//   app.use(morgan('dev'));
+// }
 
 app
   .use(compress())

@@ -15,17 +15,18 @@
     }
   },
   "dependencies": {
-    "express": "^4.13.1",
     "body-parser": "^1.13.2",
     "compression": "^1.5.1",
-    "serve-favicon": "^2.3.0",
+    "express": "^4.13.1",
+    "jade": "^1.11.0",
+    "jsonwebtoken": "^5.0.5",
     "method-override": "^2.3.4",
     "mongoose": "^4.1.0",
     "morgan": "^1.6.1",
     "multer": "^1.0.5",
-    "jsonwebtoken": "^5.0.5",
     "req-dir": "^0.0.5",
-    "jade": "^1.11.0",
+    "request": "^2.65.0",
+    "serve-favicon": "^2.3.0",
     "shell-arguments": "^1.0.4"
   },
   "devDependencies": {

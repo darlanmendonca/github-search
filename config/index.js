@@ -9,9 +9,13 @@ let config = {
     database: {
       url: 'mongodb://localhost/github-search'
     },
-    secret: 'hkswpnx',
+    secret: 'hk1s4wp6nx',
     token: {
       expiresIn: 1440 // 24 hours
+    },
+    github: {
+    	clientId: '7ba3653bf81205a7c30a',
+    	secret: 'afa0850a80f9c139f4c8af4aa6a3d43a49eecf67'
     }
   },
   production: {
@@ -22,9 +26,13 @@ let config = {
     database: {
       url: 'mongodb://localhost/github-search'
     },
-    secret: 'hkswpnx',
+    secret: 'hk1s4wp6nx',
     token: {
       expiresInMinutes: 1440 // 24 hours
+    },
+    github: {
+    	clientId: '7ba3653bf81205a7c30a',
+    	secret: 'afa0850a80f9c139f4c8af4aa6a3d43a49eecf67'
     }
   }
 };

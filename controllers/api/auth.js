@@ -35,4 +35,65 @@ AuthController.local = function(req, res) {
     });
 };
 
+AuthController.github = function(req, res) {
+	/**
+    * @api {POST} /auth/github github
+    * @apiDescription Authentication user with github account
+    * @apiName github
+    * @apiGroup Auth
+    * @apiPermission Public
+    *
+    * @apiParam {String=7ba3653bf81205a7c30a} clientId id of application
+    * @apiParam {String} code github code to get access
+    * @apiParam {String} redirectUri url to redirect
+    */
+
+  let validParams = req.body.clientId && req.body.code && req.body.redirectUri;
+  let validClientId = req.body.clientId === config.github.clientId;
+  let request = require('request');
+
+
+  if (!validClientId) {
+  	return res.status(400).json({
+  		message: 'invalid clientId'
+  	});
+  }
+
+  if (!validParams) {
+  	return res.status(400).json({
+  		message: 'invalid params, pass clientId, code and redirectUri'
+  	});
+  }
+
+  let getAccessToken = {
+  	url: 'https://github.com/login/oauth/access_token',
+  	qs: {
+  		code: req.body.code,
+  		client_id: req.body.clientId,
+  		client_secret: config.github.secret
+  	},
+  	json: true
+  };
+
+  request.get(getAccessToken, callbackAccessToken);
+
+  function callbackAccessToken(err, response, accessToken) {
+  	let error = err || response.body.error;
+  	if (error) {
+      return res
+        .status(400)
+        .send({
+          message: 'auth invalid fields',
+          error: error
+        });
+    } else {
+			res.json({
+				token: accessToken.access_token
+			});
+    }
+
+  }
+
+};
+
 module.exports = AuthController;

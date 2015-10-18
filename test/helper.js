@@ -12,5 +12,8 @@ module.exports = {
 		password: faker.internet.password(),
 		birthdate: faker.date.past(),
 		gender: 'male'
+	},
+	github: {
+		clientId: config.github.clientId
 	}
 };

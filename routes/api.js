@@ -12,6 +12,10 @@ router
   .route('/auth')
   .post(api.auth.local);
 
+router
+  .route('/auth/github')
+  .post(api.auth.github);
+
 router.use(middlewares.token);
 
 router

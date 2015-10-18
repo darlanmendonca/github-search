@@ -4,7 +4,15 @@ angular
   .module('github-search')
   .controller('SearchController', SearchController);
 
-function SearchController ($scope, GitHubFactory) {
+function SearchController ($scope, GitHubFactory, $auth) {
+	$scope.authenticate = function(provider) {
+    $auth.authenticate(provider);
+  };
+
+  if (!$auth.isAuthenticated()) {
+	  $scope.authenticate('github');
+  }
+
   $scope.search = function() {
   	GitHubFactory
   		.search($scope.q)

@@ -21,6 +21,7 @@
     "after": true,
     "describe": true,
     "it": true,
-    "angular": true
+    "angular": true,
+    "window": true
   }
 }
