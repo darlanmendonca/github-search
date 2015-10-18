@@ -25,7 +25,7 @@ function SearchController ($scope, GitHubFactory, $auth) {
   		});
   };
 
-  $scope.change = function(type, page) {
+  $scope.paginate = function(type, page) {
   	GitHubFactory
   		.paginate(type, $scope.q, page)
   		.then(function(data) {

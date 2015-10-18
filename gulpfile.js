@@ -238,7 +238,7 @@ gulp.task('apiDocs', function(done) {
 
 
 gulp.task('watch', function() {
-	gulp.watch(files.views.src.concat(files.templates.src), [
+	gulp.watch([files.views.src].concat(files.templates.src), [
 		'views',
 		browserSync.reload
 	]);

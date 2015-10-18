@@ -15,6 +15,15 @@
 		box-sizing: border-box;
 		transition: all ease .25s;
 
+		.info {
+			opacity: 0;
+			transition: opacity .2s ease;
+		}
+
+		&:hover {
+			.info {opacity: 1}
+		}
+
 		a {
 			display: inline-block;
 			color: rgba(0,0,0,0.54);
@@ -47,6 +56,13 @@
 			transition-delay: 0;
 		}
 	}
+}
+
+.info md-icon {
+	width: 16px; height: 16px;
+	margin: 0 10px;
+	position: relative;
+	top: -2px;
 }
 
 // disable md-tab change transition
