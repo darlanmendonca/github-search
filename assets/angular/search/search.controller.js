@@ -4,17 +4,24 @@ angular
   .module('github-search')
   .controller('SearchController', SearchController);
 
-function SearchController ($scope, $http) {
+function SearchController ($scope, GitHubFactory) {
   $scope.search = function() {
-  	var options = {
-		  method: 'GET',
-		  url: 'https://api.github.com/search/repositories',
-		  params: {q: $scope.q}
-		};
+  	GitHubFactory
+  		.search($scope.q)
+  		.then(function(data) {
+  			$scope.repositories = data[0];
+  			$scope.users = data[1];
+		  	$scope.repositoriesPages = new Array(Math.ceil($scope.repositories.total_count / 8));
+		  	$scope.usersPages = new Array(Math.ceil($scope.users.total_count / 8));
+		  	$scope.tabSelected = $scope.repositories.total_count > $scope.users.total_count ? 0 : 1;
+  		});
+  };
 
-  	$http(options)
-			.then(function(response) {
-				$scope.results = response.data.items;
-			});
+  $scope.change = function(type, page) {
+  	GitHubFactory
+  		.paginate(type, $scope.q, page)
+  		.then(function(data) {
+  			$scope[type] = data;
+  		});
   };
 }

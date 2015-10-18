@@ -2,21 +2,21 @@
 	margin-top: 25px;
 	a {
 		text-decoration: none;
-		margin-left: 5px;
 	}
 
-	.md-list-item {
+	p {
+		margin-top: 0;
+		margin-bottom: .5em;
+	}
+
+	.md-list-item-text {
 		line-height: 2em;
 		padding: 0 10px;
 		box-sizing: border-box;
 		transition: all ease .25s;
 
 		a {
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
 			display: inline-block;
-			max-width: 50%;
 			color: rgba(0,0,0,0.54);
 		}
 
@@ -31,7 +31,7 @@
 		}
 
 		&.ng-enter-stagger {
-			transition-delay: 0.015s;
+			transition-delay: 0.020s;
 			transition-duration: 0s;
 		}
 
@@ -48,3 +48,8 @@
 		}
 	}
 }
+
+// disable md-tab change transition
+// [role="tabpanel"] {
+//   transition: none;
+// }

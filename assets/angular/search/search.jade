@@ -1,12 +1,30 @@
 md-content.layout-padding.doc-content(layout='column')
+	//- search form
 	form(layout='row', layout-align='space-around center', ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
-		md-input-container.md-display-2(flex='')
+		md-input-container.md-display-1(flex='')
 			label Github Search
-			input.md-title(ng-model='q', autocomplete='off')
+			input.md-title(ng-model='q', autocomplete='off', autocapitalize='off')
 		md-button.md-flat.md-primary(ng-disabled='!q') Search
 
-	md-tabs.results(md-dynamic-height, md-border-bottom, ng-show='results')
-		md-tab.md-primary(label='Repositories')
-			md-list(layout='column'): .md-list-item(ng-repeat='result in results')
-				a.md-primary(ng-href='{{result.owner.html_url}}', target='_blank') {{result.owner.login}}/<strong>{{result.name}}</strong>
-		md-tab.md-primary(label='Users')
+	md-tabs.results(md-dynamic-height, md-border-bottom, md-stretch-tabs='mobile', md-selected='tabSelected', ng-show='repositories')
+		//- tab repositories
+		md-tab.md-primary(label='Repositories ({{repositories.total_count}})', md-swipe-content='{{test}}')
+			md-list(layout='column')
+				p.layout-padding.md-headline(ng-show='repositories.items <= 0') No results :(
+				.md-list-item-text(ng-repeat='repository in repositories.items')
+					a.md-subhead(ng-href='{{repository.html_url}}', target='_blank') {{repository.owner.login}}/<strong>{{repository.name}}</strong>
+					p.md-subhead {{repository.description}}
+					md-divider(ng-if="!$last")
+			//- pagination
+			md-tabs(md-align-tabs='botton', md-center-tabs='true', ng-show='repositoriesPages.length > 1')
+				md-tab(label='{{$index+1}}', md-on-select='change("repositories", $index+1)', ng-repeat='page in (repositoriesPages | limitTo: 10) track by $index | limitTo: 10')
+		
+		//- tab users/organizations
+		md-tab.md-primary(label='Users/Organizations ({{users.total_count}})', md-swipe-content='{{test}}')
+			md-list(layout='column')
+				.md-list-item-text(ng-repeat='user in users.items')
+					a.md-subhead(ng-href='{{user.html_url}}', target='_blank') {{user.login}}
+					md-divider(ng-if="!$last")
+			//-pagination
+			md-tabs(md-align-tabs='botton', md-center-tabs='true', ng-show='usersPages.length > 1')
+				md-tab(label='{{$index+1}}', md-on-select='change("users", $index+1)', ng-repeat='page in (usersPages | limitTo: 10) track by $index')
