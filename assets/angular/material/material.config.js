@@ -2,9 +2,9 @@
 
 angular
   .module('github-search')
-  .config(config);
+  .config(configMaterial);
 
-function config (cfpLoadingBarProvider, $mdThemingProvider) {
+function configMaterial ($mdThemingProvider) {
 	// matherial design theme
 	$mdThemingProvider.theme('default')
     .primaryPalette('blue')

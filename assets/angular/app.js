@@ -3,11 +3,11 @@
 angular
   .module('github-search', [
     'ngAnimate',
-    'ngCookies',
     'ngResource',
     'ngSanitize',
     'ngTouch',
     'ui.router',
     'angular-loading-bar',
-    'ngMaterial'
+    'ngMaterial',
+    'satellizer'
   ]);
