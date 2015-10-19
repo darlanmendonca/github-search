@@ -1,0 +1,1 @@
+<div><md-tabs md-align-tabs="botton" md-center-tabs="true" ng-show="pages.length &gt; 1"><md-tab label="{{$index+1}}" md-on-select="paginate($index+1)" ng-repeat="page in (pages | limitTo: 10) track by $index | limitTo: 10"></md-tab></md-tabs></div>

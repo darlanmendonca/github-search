@@ -25,11 +25,11 @@ function SearchController ($scope, GitHubFactory, $auth) {
   		});
   };
 
-  $scope.paginate = function(type, page) {
-  	GitHubFactory
-  		.paginate(type, $scope.q, page)
-  		.then(function(data) {
-  			$scope[type] = data;
-  		});
-  };
+  // $scope.paginate = function(type, page) {
+  // 	GitHubFactory
+  // 		.paginate(type, $scope.q, page)
+  // 		.then(function(data) {
+  // 			$scope[type] = data;
+  // 		});
+  // };
 }

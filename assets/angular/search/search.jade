@@ -15,22 +15,18 @@ md-content.layout-padding.doc-content(layout='column')
 					a.md-subhead(ng-href='{{repository.html_url}}', target='_blank') {{repository.owner.login}}/<strong>{{repository.name}}</strong>
 					span.info
 						md-icon.s24(md-svg-src='imgs/icons/star.svg', aria-label='Stars', title='Stars')
-						{{repository.stargazers_count}}
+						| {{repository.stargazers_count}}
 					span.info
 						md-icon.s24(md-svg-src='imgs/icons/fork.svg', aria-label='Forks', title='Forks')
-						{{repository.forks_count}}
+						| {{repository.forks_count}}
 					p.md-subhead {{repository.description}}
 					md-divider(ng-if="!$last")
-			//- pagination
-			md-tabs(md-align-tabs='botton', md-center-tabs='true', ng-show='repositoriesPages.length > 1')
-				md-tab(label='{{$index+1}}', md-on-select='paginate("repositories", $index+1)', ng-repeat='page in (repositoriesPages | limitTo: 10) track by $index | limitTo: 10')
-		
+			pagination(ng-model='repositories')
+			
 		//- tab users/organizations
 		md-tab.md-primary(label='Users/Organizations ({{users.total_count}})', md-swipe-content='{{test}}')
 			md-list(layout='column')
 				.md-list-item-text(ng-repeat='user in users.items')
 					a.md-subhead(ng-href='{{user.html_url}}', target='_blank') {{user.login}}
 					md-divider(ng-if="!$last")
-			//-pagination
-			md-tabs(md-align-tabs='botton', md-center-tabs='true', ng-show='usersPages.length > 1')
-				md-tab(label='{{$index+1}}', md-on-select='paginate("users", $index+1)', ng-repeat='page in (usersPages | limitTo: 10) track by $index')
+			pagination(ng-model='users')
