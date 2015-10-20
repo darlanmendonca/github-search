@@ -25,6 +25,7 @@ function SearchController ($scope, GitHubFactory, $auth, $mdToast) {
   		.search($scope.q)
   		.then(function(data) {
   			$scope.repositories = data[0];
+  			console.log($scope.repositories.items[0]);
   			$scope.users = data[1];
   		})
   		.catch(function(err) {

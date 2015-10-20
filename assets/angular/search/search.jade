@@ -15,12 +15,15 @@ md-content.layout-padding.doc-content(layout='column')
 				p.layout-padding.md-headline(ng-show='repositories.items <= 0') No results :(
 				.md-list-item-text(ng-repeat='repository in repositories.items')
 					a.md-subhead(ng-href='{{repository.html_url}}', target='_blank') {{repository.owner.login}}/<strong>{{repository.name}}</strong>
-					span.info
-						md-icon.s24(md-svg-src='imgs/icons/star.svg', aria-label='Stars', title='Stars')
+					span.info(title='Stars')
+						md-icon.s24(md-svg-src='imgs/icons/star.svg', aria-label='Stars')
 						| {{repository.stargazers_count}}
-					span.info
-						md-icon.s24(md-svg-src='imgs/icons/fork.svg', aria-label='Forks', title='Forks')
+					span.info(title='Forks')
+						md-icon.s24(md-svg-src='imgs/icons/fork.svg', aria-label='Forks')
 						| {{repository.forks_count}}
+					span.info(title='Open Issues')
+						md-icon.s24(md-svg-src='imgs/icons/info.svg', aria-label='Open Issues')
+						| {{repository.open_issues}}
 					p.md-subhead {{repository.description}}
 					md-divider(ng-if="!$last")
 			pagination(ng-model='repositories')
@@ -30,6 +33,6 @@ md-content.layout-padding.doc-content(layout='column')
 			md-list(layout='column')
 				p.layout-padding.md-headline(ng-show='users.items <= 0') No results :(
 				.md-list-item-text(ng-repeat='user in users.items')
-					a.md-subhead(ng-href='{{user.html_url}}', target='_blank') {{user.login}}
+					a.md-subhead(ng-href='{{user.html_url}}', target='_blank'): strong {{user.login}}
 					md-divider(ng-if="!$last")
 			pagination(ng-model='users')
