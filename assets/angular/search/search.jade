@@ -1,6 +1,6 @@
 md-content.layout-padding.doc-content(layout='column')
-	header
-		md-button.md-flat#btn-login(ng-click='loginLogout()') {{ !logged ? 'Login' : 'Logout'}} Github
+	header(ng-controller='LoginController')
+		md-button.md-flat#btn-login(ng-click='toogleLogin()') {{ !logged ? 'Login' : 'Logout'}} Github
 	//- search form
 	form(layout='row', layout-align='space-around center', ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
 		md-input-container.md-display-1(flex='')
