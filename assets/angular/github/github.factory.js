@@ -8,9 +8,9 @@ function GitHubFactory (GitHubService, $q) {
 	var githubSearch = function(type, query, page) {
 	  var d = $q.defer();
 	  page = page ? page : 1;
-   	var result = GitHubService[type].get({ q: query, page: page, 'per_page': 8}, function() {
-    	d.resolve(result);
-  	});
+	  var resolve = function(res) {d.resolve(res);};
+	  var reject = function(res) {d.reject(res);};
+  	GitHubService[type].get({ q: query, page: page, 'per_page': 8}, resolve, reject);
 		return d.promise;
 	};
 

@@ -4,14 +4,21 @@ angular
   .module('github-search')
   .controller('SearchController', SearchController);
 
-function SearchController ($scope, GitHubFactory, $auth) {
-	$scope.authenticate = function(provider) {
-    $auth.authenticate(provider);
-  };
+function SearchController ($scope, GitHubFactory, $auth, $mdToast) {
+	$scope.logged = $auth.isAuthenticated();
 
-  if (!$auth.isAuthenticated()) {
-	  $scope.authenticate('github');
-  }
+	$scope.loginLogout = function() {
+	  if (!$scope.logged) {
+		  $auth
+		  	.authenticate('github')
+		  	.then(function() {
+		  		$scope.logged = true;
+		  	});
+	  } else {
+	  	$auth.logout();
+	  	$scope.logged = false;
+	  }
+	};
 
   $scope.search = function() {
   	GitHubFactory
@@ -19,17 +26,13 @@ function SearchController ($scope, GitHubFactory, $auth) {
   		.then(function(data) {
   			$scope.repositories = data[0];
   			$scope.users = data[1];
-		  	$scope.repositoriesPages = new Array(Math.ceil($scope.repositories.total_count / 8));
-		  	$scope.usersPages = new Array(Math.ceil($scope.users.total_count / 8));
-		  	$scope.tabSelected = $scope.repositories.total_count > $scope.users.total_count ? 0 : 1;
+  		})
+  		.catch(function(err) {
+  			if (err.status === 403) {
+  				$mdToast.showSimple('Heyy rapaz, calma awe, o Github não libera tantas requests subsequentes, rs.');
+  			} else {
+  				$mdToast.showSimple('Unexpected error: '+err.statusText);
+  			}
   		});
   };
-
-  // $scope.paginate = function(type, page) {
-  // 	GitHubFactory
-  // 		.paginate(type, $scope.q, page)
-  // 		.then(function(data) {
-  // 			$scope[type] = data;
-  // 		});
-  // };
 }

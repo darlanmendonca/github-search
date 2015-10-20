@@ -15,22 +15,21 @@ function paginationDirective(GitHubFactory) {
     },
     link: function(scope, element, attributes) {
     	var maxItensForPage = 8;
+    	var type = attributes.ngModel;
 
     	scope.$watch('data', function(value, old) {
     		if (value && value !== old){
 		    	scope.pages = new Array(Math.ceil(scope.data.total_count / maxItensForPage));
+
+		    	scope.paginate = function(page) {
+				  	GitHubFactory
+				  		.paginate(type, scope.$parent.q, page)
+				  		.then(function(data) {
+				  			scope.$parent[type] = data;
+				  		});
+				  };
     		}
     	});
-
-    	var type = attributes.ngModel;
-
-    	scope.paginate = function(page) {
-		  	GitHubFactory
-		  		.paginate(type, scope.$parent.q, page)
-		  		.then(function(data) {
-		  			scope.$parent[type] = data;
-		  		});
-		  };
 		}
 	};
 }

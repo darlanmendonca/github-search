@@ -1,4 +1,6 @@
 md-content.layout-padding.doc-content(layout='column')
+	header
+		md-button.md-flat#btn-login(ng-click='loginLogout()') {{ !logged ? 'Login' : 'Logout'}} Github
 	//- search form
 	form(layout='row', layout-align='space-around center', ng-submit='formSearchGithub.$valid && search()', novalidate, name='formSearchGithub')
 		md-input-container.md-display-1(flex='')
@@ -8,7 +10,7 @@ md-content.layout-padding.doc-content(layout='column')
 
 	md-tabs.results(md-dynamic-height, md-border-bottom, md-stretch-tabs='mobile', md-selected='tabSelected', ng-show='repositories')
 		//- tab repositories
-		md-tab.md-primary(label='Repositories ({{repositories.total_count}})', md-swipe-content='{{test}}')
+		md-tab.md-primary(label='Repositories ({{repositories.total_count}})', md-active='users.total_count <= repositories.total_count')
 			md-list(layout='column')
 				p.layout-padding.md-headline(ng-show='repositories.items <= 0') No results :(
 				.md-list-item-text(ng-repeat='repository in repositories.items')
@@ -22,10 +24,11 @@ md-content.layout-padding.doc-content(layout='column')
 					p.md-subhead {{repository.description}}
 					md-divider(ng-if="!$last")
 			pagination(ng-model='repositories')
-			
+
 		//- tab users/organizations
-		md-tab.md-primary(label='Users/Organizations ({{users.total_count}})', md-swipe-content='{{test}}')
+		md-tab.md-primary(label='Users/Organizations ({{users.total_count}})', md-active='users.total_count > repositories.total_count')
 			md-list(layout='column')
+				p.layout-padding.md-headline(ng-show='users.items <= 0') No results :(
 				.md-list-item-text(ng-repeat='user in users.items')
 					a.md-subhead(ng-href='{{user.html_url}}', target='_blank') {{user.login}}
 					md-divider(ng-if="!$last")
